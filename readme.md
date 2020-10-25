@@ -18,6 +18,7 @@ TICKET_LOGS= // ticket log channel here
 
 # Useful information
 You will need to install `nodejs` to run this bot, a valid discord bot application and a host.
+
 [nodejs](https://nodejs.org/en/)
 
 [discord developer portal](https://discord.com/developers/applications)
