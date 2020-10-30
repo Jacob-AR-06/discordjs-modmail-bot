@@ -9,14 +9,14 @@ run `npm run dev` if you want to edit the bot and want it to restart everytime i
 run `npm run build` to create a build and than `npm run start` to start the bot.
 
 # dotenv Example
+You will need to add a `.env` file if you want to run your bot on a vps or your own pc, if you want to use heroku, I would recommend using the built-in envoirment variables system. Don't forget to copy the exact names of the enviorment variables, if you don't dont that, you will break the system.
+
 ```ts
 DISCORD_BOT_TOKEN= //bot token here
 DISCORD_BOT_PREFIX= //prefix here
 GUILD_ID= // guild id here
 TICKET_LOGS= // ticket log channel here
 ```
-
-You will need to add a `.env` file if you want to run your bot on a vps or your own pc, if you want to use heroku, I would recommend using the built-in envoirment variables system. Don't forget to copy the exact names of the enviorment variables, if you don't dont that, you will break the system.
 =======
 # Useful information
 You will need to install `nodejs` to run this bot, a valid discord bot application and a host.
