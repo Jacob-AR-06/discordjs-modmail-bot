@@ -15,3 +15,5 @@ DISCORD_BOT_PREFIX= //prefix here
 GUILD_ID= // guild id here
 TICKET_LOGS= // ticket log channel here
 ```
+
+You will need to add a `.env` file if you want to run your bot on a vps or your own pc, if you want to use heroku, I would recommend using the built-in envoirment variables system. Don't forget to copy the exact names of the enviorment variables, if you don't dont that, you will break the system.
