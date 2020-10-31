@@ -19,7 +19,7 @@ export default class DmEvent extends BaseEvent {
       await channel.send(`> 🎫 | Ticket is created, you will receive a response shortly.`);
     } catch (e) { if (e) return; }
 
-    const ticketClaimChannel: TextChannel = guild.channels.cache.get('739542689904591008') as TextChannel;
+    const ticketClaimChannel: TextChannel = guild.channels.cache.get(process.env.TICKET_LOGS) as TextChannel;
     try {
       const filter = (reaction: MessageReaction, user: User) => {
         return ['✅'].includes(reaction.emoji.name) && !user.bot;
