@@ -11,18 +11,18 @@ export default class DmEvent extends BaseEvent {
     const channel: DMChannel = await message.author.createDM();
     const guild: Guild = client.guilds.cache.get(process.env.GUILD_ID);
 
-    if (!guild.available) return channel.send('> 🔥 | It looks like the server you tried to contact is on an outage, please try again later!').catch(e => { if (e) return; });
+    if (!guild.available) return channel.send('> 🔥 | It looks like the server you tried to contact is experiencing an outage, please try again later. We apologise for the inconvenience.').catch(e => { if (e) return; });
     const ticket: TextChannel = guild.channels.cache.filter(c => c.name.startsWith(message.author.id) && c.name.endsWith('-ticket')).first() as TextChannel;
     if (ticket) return this.ticket(client, message, ticket);
 
     const ticketClaimChannel: TextChannel = guild.channels.cache.get(process.env.TICKET_LOGS) as TextChannel;
     const msgs = await ticketClaimChannel.messages.fetch();
     if (msgs.filter(m => m.content.includes(`👤 | User: **${message.author.tag}**`)).size) return channel.send(
-      `> ❌ | It looks like a ticket is already created for you, please wait until someone claimes your ticket and it is closed.`
+      `> ❌ | It looks like a ticket has already been created for you, please wait until someone claims your ticket and it has been closed.`
     );
 
     try {
-      await channel.send(`> 🎫 | Ticket is created, you will receive a response shortly.`);
+      await channel.send(`> 🎫 | Your ticket has been created, you will receive a response shortly.`);
     } catch (e) { if (e) return; }
 
     try {
@@ -43,7 +43,7 @@ export default class DmEvent extends BaseEvent {
         return this.handleticket(message, channel, claimer, guild, claimMsg);
       })
       .catch(collected => {
-        return channel.send(`> ❌ | No one claimed your ticket on time, please open a new one or reach out to a admin/mod directly.`);
+        return channel.send(`> ❌ | No one claimed your ticket on time, please open a new one or reach out to a admin/mod directly. We apologise for the inconvenience.`);
       });
     } catch (e) {
       console.log(e);
@@ -77,7 +77,7 @@ export default class DmEvent extends BaseEvent {
     const files = this.getUrls(message.attachments);
     try {
       await channel.send(
-        `> 💬 | **${message.author.tag}**: \`\`\`${message.content || 'No content'}\`\`\` \n > ❓ | To reply send a DM to me. \n > Use \`${prefix}\` if you don't want to respond with a message. \n > and use \`${prefix}close\` to close the ticket.`
+        `> 💬 | **${message.author.tag}**: \`\`\`${message.content || 'No content'}\`\`\` \n > ❓ | To reply, send a DM to me. \n > Start your message with \`${prefix}\` if you don't want to respond with a message \n > and use \`${prefix}close\` to close the ticket.`
       , { files });
       return ticketChannel.send(`> ✅ | Reply successfully sent to **${opener.tag}**!`);
     } catch (e) {
@@ -93,9 +93,9 @@ export default class DmEvent extends BaseEvent {
       ticketChannel.updateOverwrite(guild.me, { SEND_MESSAGES: true, VIEW_CHANNEL: true, ATTACH_FILES: true });
       ticketChannel.updateOverwrite(guild.id, { SEND_MESSAGES: false, VIEW_CHANNEL: false });
       await ticketChannel.send(
-        `> 👤 | User: **${message.author.tag}** \n > 💬 | Message: \`\`\`${message.content}\`\`\` \n > ❓ | Use \`${prefix}\` if you don't want to respond with a message, \n > use \`${prefix}transfer <user name/id/mention/tag>\` to transfer \n > and use \`${prefix}close\` to close the ticket.`
+        `> 👤 | User: **${message.author.tag}** \n > 💬 | Message: \`\`\`${message.content}\`\`\` \n > ❓ | Start your message with \`${prefix}\` if you don't want to respond with a message \n > use \`${prefix}transfer <user name/id/mention/tag>\` to transfer \n > and use \`${prefix}close\` to close the ticket.`
       );
-      channel.send(`> 👥 | Ticket is claimed by **${claimer.tag}**, you should receive a response shortly.`);
+      channel.send(`> 👥 | Your ticket has been claimed by **${claimer.tag}**, you should receive a response shortly.`);
     } catch (e) {
       console.log(e);
     }

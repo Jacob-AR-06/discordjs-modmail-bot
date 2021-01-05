@@ -18,10 +18,10 @@ export default class CloseCommand extends BaseCommand {
       const msg = (await ticketLogs.messages.fetch({ limit: 100 })).filter(m => m.content.includes(message.author.tag && claimer.tag)).last();
 
       try {
-        await claimer.send(`> 📙 | The ticket from **${message.author.tag}** you claimed as been closed!`);
+        await claimer.send(`> 📙 | The ticket from **${message.author.tag}** that you claimed has been closed!`);
       } finally {
         msg ? await msg.delete() : '';
-        return channel.delete('ticket is closed by' + message.author.tag).catch(e => channel.send('> ❌ | Couldnt delete the channel!'));
+        return channel.delete('ticket is closed by' + message.author.tag).catch(e => channel.send('> ❌ | Could not delete the channel!'));
       }
     } else {
       const guild: Guild = client.guilds.cache.get(process.env.GUILD_ID);
@@ -33,10 +33,10 @@ export default class CloseCommand extends BaseCommand {
       const msg = (await ticketLogs.messages.fetch({ limit: 100 })).filter(m => m.content.includes(message.author.tag && opener.tag)).last();
 
       try {
-        await opener.send(`> 📙 | Your ticket has been closed, thanks for getting into touch!`);
+        await opener.send(`> 📙 | Your ticket has been closed, thank you for getting in touch!`);
       } finally {
         msg ? await msg.delete() : '';
-        channel.delete('ticket is closed by' + message.author.tag).catch(e => channel.send('> ❌ | Couldnt delete the channel!'));
+        channel.delete('ticket is closed by' + message.author.tag).catch(e => channel.send('> ❌ | Could not delete the channel!'));
       }
     }
   }
