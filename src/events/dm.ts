@@ -43,7 +43,7 @@ export default class DmEvent extends BaseEvent {
         return this.handleticket(message, channel, claimer, guild, claimMsg);
       })
       .catch(collected => {
-        return channel.send(`> ❌ | No one claimed your ticket on time, please open a new one or reach out to a admin/mod directly.`);
+        return channel.send(`> ❌ | No one claimed your ticket on time, please open a new one or reach out to a admin/mod directly. We apologise for the inconvenience.`);
       });
     } catch (e) {
       console.log(e);
