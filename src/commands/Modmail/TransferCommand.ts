@@ -31,7 +31,7 @@ export default class CloseCommand extends BaseCommand {
 
       const opener = await client.users.cache.get(channel.name.slice(0, -26)).createDM();
 
-      const msg = await dm.send(`> 📨 | **${message.author.tag}** Requested to make a ticket transfer, react to this message to accept the transfer.`);
+      const msg = await dm.send(`> 📨 | **${message.author.tag}** requested to make a ticket transfer, please react to this message to confirm/deny the transfer.`);
       await msg.react('✅');
       await msg.react('❌');
 
@@ -55,10 +55,10 @@ export default class CloseCommand extends BaseCommand {
 
       })
       .catch(collected => {
-        return message.channel.send(`> ❌ | ${message.author.toString()}, No one claimed your ticket on time, you will stay as ticket claimer.`);
+        return message.channel.send(`> ❌ | ${message.author.toString()}, no one claimed your ticket on time, you will stay as the ticket claimer.`);
       });
     } catch (e) { 
-      return message.channel.send(`> ❌ | ${message.author.toString()}, No one claimed your ticket on time, you will stay as ticket claimer.`);
+      return message.channel.send(`> ❌ | ${message.author.toString()}, no one claimed your ticket on time, you will stay as the ticket claimer.`);
     }
   }
 }
