@@ -11,7 +11,7 @@ export default class DmEvent extends BaseEvent {
     const channel: DMChannel = await message.author.createDM();
     const guild: Guild = client.guilds.cache.get(process.env.GUILD_ID);
 
-    if (!guild.available) return channel.send('> 🔥 | It looks like the server you tried to contact is on an outage, please try again later!').catch(e => { if (e) return; });
+    if (!guild.available) return channel.send('> 🔥 | It looks like the server you tried to contact is experiencing an outage, please try again later. We apologise for the inconvenience.').catch(e => { if (e) return; });
     const ticket: TextChannel = guild.channels.cache.filter(c => c.name.startsWith(message.author.id) && c.name.endsWith('-ticket')).first() as TextChannel;
     if (ticket) return this.ticket(client, message, ticket);
 
@@ -22,7 +22,7 @@ export default class DmEvent extends BaseEvent {
     );
 
     try {
-      await channel.send(`> 🎫 | Ticket is created, you will receive a response shortly.`);
+      await channel.send(`> 🎫 | Your ticket has been created, you will receive a response shortly.`);
     } catch (e) { if (e) return; }
 
     try {
