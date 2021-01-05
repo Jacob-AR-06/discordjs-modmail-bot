@@ -25,7 +25,7 @@ You will need to install `Node.js` to run this bot.
 
 [Node.js](https://nodejs.org/en/)
 
-Ddiscord Developer Portal](https://discord.com/developers/applications)
+[Discord Developer Portal](https://discord.com/developers/applications)
 
 [How to Create an Application](https://discordpy.readthedocs.io/en/latest/discord.html)
 
