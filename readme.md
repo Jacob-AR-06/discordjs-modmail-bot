@@ -1,15 +1,17 @@
 # Modmail Bot
-A simple modmail bot created with typescript and discord.js.
+A simple modmail bot created with TypeScript and discord.js.
 
 # Installation
-`npm install` you will need to do this in order to install the required packages.
+Run `npm install` in the same directory as the bot in order to install the required packages.
 
 # Using the bot
-run `npm run dev` if you want to edit the bot and want it to restart everytime it saves.
-run `npm run build` to create a build and than `npm run start` to start the bot.
+Run `npm run dev` if you want to edit the bot and want it to restart everytime it saves.\
+Run `npm run build` to create a build and then run `npm run start` to start the bot.
+
+Recent versions of Node.js may return an error when attempting to build/run the bot. To rectify this, navigate to the `src/utils/structures/BaseCommand.ts` file and remove `async` from line 12. It should now read `abstract run(client: DiscordClient, message: Message, args: Array<string> | null);`.
 
 # dotenv Example
-You will need to add a `.env` file if you want to run your bot on a vps or your own pc, if you want to use heroku, I would recommend using the built-in envoirment variables system. Don't forget to copy the exact names of the enviorment variables, if you don't dont that, you will break the system.
+You will need to add a `.env` file if you want to run your bot on a VPS or on your own PC. If you want to use Heroku, I would recommend using the built-in environment variables system. Don't forget to copy the exact names of the environment variables. If you don't do that, you will break the system.
 
 ```ts
 DISCORD_BOT_TOKEN= //bot token here
@@ -19,13 +21,13 @@ TICKET_LOGS= // ticket log channel here
 ```
 
 # Useful information
-You will need to install `nodejs` to run this bot, a valid discord bot application and a host.
+You will need to install `Node.js` to run this bot.
 
-[nodejs](https://nodejs.org/en/)
+[Node.js](https://nodejs.org/en/)
 
-[discord developer portal](https://discord.com/developers/applications)
+Ddiscord Developer Portal](https://discord.com/developers/applications)
 
-[How to create an application](https://discordpy.readthedocs.io/en/latest/discord.html)
+[How to Create an Application](https://discordpy.readthedocs.io/en/latest/discord.html)
 
-[how to install nodejs](https://www.youtube.com/watch?v=qYwLOXjAiwM)
+[How to Install Node.js](https://www.youtube.com/watch?v=qYwLOXjAiwM)
 
