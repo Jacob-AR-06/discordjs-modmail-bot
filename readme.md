@@ -8,7 +8,7 @@ Run `npm install` in the same directory as the bot in order to install the requi
 Run `npm run dev` if you want to edit the bot and want it to restart everytime it saves.\
 Run `npm run build` to create a build and then run `npm run start` to start the bot.
 
-Recent versions of Node.js may return an error when attempting to build/run the bot. To rectify this, navigate to the `src/utils/structures/BaseCommand.ts` file and remove `async` from line 12. It should now read `abstract run(client: DiscordClient, message: Message, args: Array<string> | null);`.
+Recent versions of Node.js may return an error when attempting to build/run the bot. To rectify this, navigate to `src/utils/structures/BaseCommand.ts` and remove `async` from line 12. It should now read `abstract run(client: DiscordClient, message: Message, args: Array<string> | null);`.
 
 # dotenv Example
 You will need to add a `.env` file if you want to run your bot on a VPS or on your own PC. If you want to use Heroku, I would recommend using the built-in environment variables system. Don't forget to copy the exact names of the environment variables. If you don't do that, you will break the system.
