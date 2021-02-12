@@ -43,6 +43,7 @@ export default class CloseCommand extends BaseCommand {
         switch (collected.first().emoji.name) {
           case '✅':
             if (!channel) return;
+            await channel.updateOverwrite(claimer, { SEND_MESSAGES: true, VIEW_CHANNEL: true, ATTACH_FILES: true });
             await channel.setName(`${channel.name.slice(0, -26)}-${claimer.id}-ticket`);
             dm.send(`> ✅ | Ticket is transfered!`);
             message.author.send(`> 📨 | The ticket has been transfered to **${claimer.tag}**!`);
