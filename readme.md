@@ -17,34 +17,35 @@
 
 > The only modmail-bot you need to improve communication in your discord server. Easy to use, requires little permissions, database usage (ticket store) and customisable
 
-### 🏠 [Homepage](https://github.com/DaanGamesDG/modmail-bot)
-
 ## Install
 
 ```sh
-yarn install
+yarn install / npm install
 ```
+
+Install all needed dependencies in order to work.
 
 ## Author
 
-👤 **daangamesdg**
+👤 **DaanGamesDG**
 
-* Website: https://daangamesdg.wtf/
-* Twitter: [@DaanGamesDG](https://twitter.com/DaanGamesDG)
-* Github: [@DaanGamesDG](https://github.com/DaanGamesDG)
+- Website: https://daangamesdg.wtf/
+- Twitter: [@DaanGamesDG](https://twitter.com/DaanGamesDG)
+- Github: [@DaanGamesDG](https://github.com/DaanGamesDG)
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/DaanGamesDG/modmail-bot/issues). 
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/DaanGamesDG/modmail-bot/issues).
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
+Feel free to donate me if you want to: <br />
+<a href="https://www.paypal.me/DaanGamesDG/">
+<img alt="Support via PayPal" src="https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg"/>
+</a>
 
 ## 📝 License
 
-Copyright © 2021 [daangamesdg](https://github.com/DaanGamesDG).<br />
-This project is [Apache--2.0](https://github.com/DaanGamesDG/discordjs-modmail-bot/blob/master/LICENSE) licensed.
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+Copyright © 2021 [DaanGamesDG](https://github.com/DaanGamesDG).<br />
+This project is [Apache-2.0](https://github.com/DaanGamesDG/discordjs-modmail-bot/blob/master/LICENSE) licensed.
