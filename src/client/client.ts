@@ -5,6 +5,7 @@ import { Message } from "discord.js";
 import { connect, connection } from "mongoose";
 import { join } from "path";
 import util from "./util";
+import { error_logging } from "../config.json";
 
 // declare
 declare module "discord-akairo" {
@@ -13,6 +14,7 @@ declare module "discord-akairo" {
 		listenerHandler: ListenerHandler;
 		log(msg: string): void;
 		utils: util;
+		tickets: boolean;
 	}
 }
 
@@ -20,6 +22,8 @@ declare module "discord-akairo" {
 export default class Client extends AkairoClient {
 	private wb: WebhookClient = new WebhookClient(process.env.WB_ID, process.env.WB_TOKEN);
 	public utils: util = new util(this);
+
+	public tickets: boolean = true;
 
 	public listenHandler: ListenerHandler = new ListenerHandler(this, {
 		directory: join(__dirname, "..", "events"),
@@ -105,7 +109,7 @@ export default class Client extends AkairoClient {
 	}
 
 	public log(msg: string): void {
-		this.wb.send(">>> " + msg);
+		if (error_logging) this.wb.send(">>> " + msg);
 		console.log(msg.replace(/\*/g, "").replace(/`/g, ""));
 	}
 }

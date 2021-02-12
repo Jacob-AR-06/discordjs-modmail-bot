@@ -1,0 +1,9 @@
+{
+	"owners": ["owner_ids_here"],
+	"error_logging": true,
+	"claimChannel": "claim_channel_id",
+	"transcript": {
+		"enabled": false,
+		"channel": "channel_id_here"
+	}
+}

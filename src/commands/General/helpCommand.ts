@@ -30,7 +30,9 @@ export default class helpCommand extends Command {
 				message.guild?.iconURL({ dynamic: true, size: 4096 }) ||
 					message.author.displayAvatarURL({ dynamic: true, size: 4096 })
 			)
-			.setFooter(`❗ | The prefix for this bot is "${this.handler.prefix}"`)
+			.setFooter(
+				`❗ | The prefix for this bot is "${this.handler.prefix}" - created by DaanGamesDG#7621`
+			)
 			.setTitle(`Help Command - ${message.author.tag}`);
 
 		if (command) {
