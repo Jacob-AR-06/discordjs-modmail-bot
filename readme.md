@@ -40,6 +40,7 @@ The best things to do is to give the bot admin permissions but this is completel
 
 - [DaanGamesDG](https://github.com/daangamesdg/) - Making the whole system
 - [Seb](https://github.com/sebjensen) - Fixed the grammer
+- [ShadowScape](https://github.com/Sh4dowScape) - Fixing bugs
 
 ---
 
