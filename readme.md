@@ -1,53 +1,50 @@
-<h1 align="center">🎫 Discord modmail bot</h1>
+<h1 align="center">Welcome to modmail-bot 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-2.0.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://github.com/DaanGamesDG/discordjs-modmail-bot#readme" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/DaanGamesDG/discordjs-modmail-bot/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="https://github.com/DaanGamesDG/discordjs-modmail-bot/blob/master/LICENSE" target="_blank">
+    <img alt="License: Apache--2.0" src="https://img.shields.io/github/license/DaanGamesDG/modmail-bot" />
+  </a>
+  <a href="https://twitter.com/DaanGamesDG" target="_blank">
+    <img alt="Twitter: DaanGamesDG" src="https://img.shields.io/twitter/follow/DaanGamesDG.svg?style=social" />
+  </a>
+</p>
 
-Hello 👋, this is another opensource repo? Well, you can use the code so yes I think.
-Anways, make sure to follow the license, open an issue for problems and a PR request if you want to contribute to this project :D. Anways, if you want to use this bot, make sure to check the ["How to set it up"](https://github.com/daangamesdg/) part of this readme.
+> The only modmail-bot you need to improve communication in your discord server. Easy to use, requires little permissions, database usage (ticket store) and customisable
 
----
+### 🏠 [Homepage](https://github.com/DaanGamesDG/modmail-bot)
 
-The only things I want you to do is follow the license, credits aren't really needed however I appriciate it if you do. Claiming that it's your own code is not allowed, not having to give me credits is enough I think.
+## Install
 
-This is like a v2 of the old modmail bot, this one uses a db rather than the cache to save the ticket information.
+```sh
+yarn install
+```
 
----
+## Author
 
-**Commands / Features**
+👤 **daangamesdg**
 
-To save you some time, I listed every feature / command here:
+* Website: https://daangamesdg.wtf/
+* Twitter: [@DaanGamesDG](https://twitter.com/DaanGamesDG)
+* Github: [@DaanGamesDG](https://github.com/DaanGamesDG)
 
-- Ticket creation (obviously)
-- Ticket chat (obviously)
-- Spam filter (to make sure no one gets spam DMed by the bot)
-- Blacklist / whitelist command
-- Whitelisted roles (the roles that have access to the tickets)
-- Config command (prefix, whitelisted roles, ticket toggle)
-- Ticket creation using a command / mention
-- Admin permission overwrite (every admin is able to bypass the ticket blocks - ex: admins & ticket claimers are able to close the ticket)
+## 🤝 Contributing
 
----
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/DaanGamesDG/modmail-bot/issues). 
 
-**Permissions**
+## Show your support
 
-Permissions, why?! Well, without permissions, the bot might not be able to run properly. Let me explain:
+Give a ⭐️ if this project helped you!
 
-- Read and Send Messages - Without them the bot is not able to respond or see your messages. (required permissions)
-- View Channel, Add reactions, Manage Channels, Embed Links (without these the bot might not be able to create tickets)
-- Manage Messages - Used to cleanup the config prompts (optional permission)
+## 📝 License
 
-The best things to do is to give the bot admin permissions but this is completely up to you.
+Copyright © 2021 [daangamesdg](https://github.com/DaanGamesDG).<br />
+This project is [Apache--2.0](https://github.com/DaanGamesDG/discordjs-modmail-bot/blob/master/LICENSE) licensed.
 
-**Contributors**
-
-- [DaanGamesDG](https://github.com/daangamesdg/) - Making the whole system
-- [Seb](https://github.com/sebjensen) - Fixed the grammer
-- [ShadowScape](https://github.com/Sh4dowScape) - Fixing bugs
-
----
-
-**How to set it up**
-
-steps...
-
----
-
-> © Licensed under MIT, all rights reserved
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
