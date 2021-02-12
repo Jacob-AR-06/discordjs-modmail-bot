@@ -28,6 +28,7 @@ Install all needed dependencies in order to work.
 ## Setup
 
 ❗**permissions**
+
 The best option is go give the bot `Administrator` permissions, but you can do it the hard way and only give the permissions it needs. Required permissions:
 - Read & Send Messages ~ (obivously) If the bot isn't able to read messages or send messages, it doesn't respond to your requests.
 - Manage Channels ~ (required) This is needed so the bot is able to create / edit / delete channels.
