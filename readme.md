@@ -82,6 +82,10 @@ When transcripts are enabled you should have `.net runtime` installed on your pc
 
 In order to run the bot you need to have [NodeJS](https://nodejs.org/en/), I recommend using the 14.x version. To run the bot open your terminal, go to the correct directory and type `yarn run start / npm run start`, this will make a build and start the bot. After that, your done! Bot should be running without problems, yay 🎉.
 
+## Commands & Features
+
+The bot has the basic commands such as exec, eval, ping, help but also a close, contact, transcript, blacklist command. When running the close command with transcripts turned on, the bot will display a type status, during this period it is transcripting the channel. This may take a while depending on your pc hardware. Once finished it will delete the channel and save the transcript to a channel.
+
 ## Author
 
 👤 **DaanGamesDG**
