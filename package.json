@@ -21,6 +21,6 @@
 		"run": "tsc && node dist/bot.js"
 	},
 	"repository": {
-		"url": "https://github.com/DaanGamesDG/discordjs-modmail-bot"
+		"url": "https://github.com/DaanGamesDG/modmail-bot"
 	}
 }
