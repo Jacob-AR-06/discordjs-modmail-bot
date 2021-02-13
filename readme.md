@@ -53,7 +53,34 @@ PREFIX= <prefix>
 ```
 
 Do **not** add any spaces, everything should be connected to each other. Otherwise you will get an error.
-Do the same for the `config.json.example` file, rename it to `config.json.example`. Once you done that....
+Do the same for the `config.json.example` file, rename it to `config.json.example`. Once you done that you can edit the bot's status, activity etc!
+
+Let me show you what is what exactly:
+
+```json
+{
+	"owners": ["owner_ids_here"], // ids of the users that a have access to owner only commands
+	"error_logging": true, // whether or not to enable webhook logging
+	"claimChannel": "claim_channel_id", // channel id to claim tickets
+	"category": "category_id_here", // category id for the ticket channels (leave emtpy if none)
+	"roleId": "helper_role_here", // role for the people that have access to the tickets (leave emtpy if none)
+	"transcript": {
+		"enabled": false, // whether or not to enable transcripts
+		"channel": "channel_id_here" // transcripts channel id
+	},
+	"client": {
+		"activity": "with your tickets!", // activity message
+		"type": "PLAYING", // activity type (PLAYING, STREAMING, LISTENING, WATCHING, CUSTOM_STATUS, COMPETING)
+		"status": "online", // status type (online, invisible, dnd, idle)
+		"hex": "#4B5E6A" // color for the embeds
+	}
+}
+```
+
+If you remove one of the items / give them the wrong value, the bot might crash.
+When transcripts are enabled you should have `.net runtime` installed on your pc, you must have a folder inside the main bot folder called "transcriptor" with the [discordChatExporter](https://github.com/Tyrrrz/DiscordChatExporter) program inside it, otherwise it won't work. For more information about it please check [this](https://github.com/Tyrrrz/DiscordChatExporter/wiki). I am **not** responsable for any issues regarding the transcriptor part.
+
+In order to run the bot you need to have [NodeJS](https://nodejs.org/en/), I recommend using the 14.x version. To run the bot open your terminal, go to the correct directory and type `yarn run start / npm run start`, this will make a build and start the bot. After that, your done! Bot should be running without problems, yay 🎉.
 
 ## Author
 
