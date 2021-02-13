@@ -13,7 +13,7 @@ export default class pingCommand extends Command {
 		});
 	}
 
-	public exec(message: Message) {
+	exec(message: Message) {
 		const time = Date.now();
 		message.util.send(`> 🏓 Pinging...`).then((m) => {
 			m.edit(

@@ -33,6 +33,7 @@ export default class Client extends AkairoClient {
 	public commandHandler: CommandHandler = new CommandHandler(this, {
 		directory: join(__dirname, "..", "commands"),
 		prefix: process.env.PREFIX,
+		automateCategories: true,
 		allowMention: true,
 		blockBots: true,
 		blockClient: true,

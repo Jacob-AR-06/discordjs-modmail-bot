@@ -2,6 +2,8 @@ import Client from "./client";
 import { TextChannel, User, Collection, MessageAttachment } from "discord.js";
 import { Guild } from "discord.js";
 import { GuildMember } from "discord.js";
+import { exec } from "child_process";
+import { join } from "path";
 
 export default class util {
 	public constructor(private client: Client) {}
