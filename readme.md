@@ -27,15 +27,33 @@ Install all needed dependencies in order to work.
 
 ## Setup
 
-❗**permissions**
+❗ **permissions**
 
 The best option is go give the bot `Administrator` permissions, but you can do it the hard way and only give the permissions it needs. Required permissions:
+
 - Read & Send Messages ~ (obivously) If the bot isn't able to read messages or send messages, it doesn't respond to your requests.
 - Manage Channels ~ (required) This is needed so the bot is able to create / edit / delete channels.
 - Embed Links & Message Attachments ~ (required) Without the bot isn't able to send 9/10 messages.
 - Add Reactiona ~ (required) This is needed to show that the ticket owner has received the reply and to be able to setup the ticket claim system.
 
+**Starting the bot**
 
+It's a really simple process, first you need to rename the `.env.example` to `.env`. After that fill in the gaps!
+
+This is what you should fill in:
+
+```
+TOKEN= <discord bot token>
+DB= <mongodb url>
+
+WB_ID= <webhook id> -> used to log errors, check the config.json file to turn it off or on!
+WB_TOKEN= <webhook token> -> used to log errors, check the config.json file to turn it off or on!
+
+PREFIX= <prefix>
+```
+
+Do **not** add any spaces, everything should be connected to each other. Otherwise you will get an error.
+Do the same for the `config.json.example` file, rename it to `config.json.example`. Once you done that....
 
 ## Author
 

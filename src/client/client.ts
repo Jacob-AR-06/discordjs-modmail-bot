@@ -5,7 +5,7 @@ import { Message } from "discord.js";
 import { connect, connection } from "mongoose";
 import { join } from "path";
 import util from "./util";
-import { error_logging } from "../config.json";
+import { error_logging, client } from "../config.json";
 
 // declare
 declare module "discord-akairo" {
@@ -15,6 +15,7 @@ declare module "discord-akairo" {
 		log(msg: string): void;
 		utils: util;
 		tickets: boolean;
+		hex: string;
 	}
 }
 
@@ -24,6 +25,7 @@ export default class Client extends AkairoClient {
 	public utils: util = new util(this);
 
 	public tickets: boolean = true;
+	public hex = client?.hex || "#4B5E6A";
 
 	public listenHandler: ListenerHandler = new ListenerHandler(this, {
 		directory: join(__dirname, "..", "events"),
@@ -56,14 +58,23 @@ export default class Client extends AkairoClient {
 		ignoreCooldown: this.ownerID,
 	});
 	public constructor({ ownerID }: { ownerID: string[] }) {
-		super(
-			{
-				ownerID,
+		super({
+			ownerID,
+			disableMentions: "everyone",
+			messageCacheMaxSize: 50,
+			messageCacheLifetime: 60,
+			messageSweepInterval: 100,
+			ws: {
+				intents: [
+					"GUILDS",
+					"GUILD_MESSAGES",
+					"DIRECT_MESSAGES",
+					"DIRECT_MESSAGE_REACTIONS",
+					"GUILD_MESSAGE_REACTIONS",
+				],
 			},
-			{
-				disableMentions: "everyone",
-			}
-		);
+			partials: ["REACTION", "USER", "CHANNEL", "GUILD_MEMBER", "MESSAGE"],
+		});
 	}
 
 	private async _init(): Promise<void> {
@@ -109,7 +120,7 @@ export default class Client extends AkairoClient {
 	}
 
 	public log(msg: string): void {
-		if (error_logging) this.wb.send(">>> " + msg);
+		if (typeof error_logging === "boolean" && error_logging) this.wb.send(">>> " + msg);
 		console.log(msg.replace(/\*/g, "").replace(/`/g, ""));
 	}
 }

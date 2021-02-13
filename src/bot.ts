@@ -1,5 +1,6 @@
 import { config } from "dotenv";
 import Client from "./client/client";
+import { owners } from "./config.json";
 config();
 
-new Client({ ownerID: ["304986851310043136"] }).start();
+new Client({ ownerID: Array.isArray(owners) ? owners : [] }).start();

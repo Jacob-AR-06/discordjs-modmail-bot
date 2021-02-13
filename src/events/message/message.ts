@@ -16,10 +16,10 @@ export default class messageEvent extends Listener {
 	}
 
 	async exec(message: Message) {
-		if (message.system || message.author.bot) return;
-		if (message.channel.type === "text" && message.channel.name !== "ticket") return;
+		if (message.system || message.author.bot || message.webhookID) return;
 		if (message.mentions.users.has(this.client.user.id) && message.content.startsWith("<@"))
 			return this.createTicket(message);
+		if (message.channel.type === "text" && message.channel.name !== "ticket") return;
 
 		switch (message.channel.type) {
 			case "dm":
@@ -51,7 +51,7 @@ export default class messageEvent extends Listener {
 							}\n\`\`\`❓ | Add \`${
 								this.client.commandHandler.prefix
 							}\` to block the bot from sending a reply.`,
-							{ files }
+							{ files, allowedMentions: { users: [] } }
 						);
 					} catch (e) {
 						return message.author
@@ -86,7 +86,7 @@ export default class messageEvent extends Listener {
 						filter.delete(data.channelId);
 					}
 
-					if (data.status === "closed" || message.channel.topic.includes(message.author.id)) return;
+					if (data.status === "closed" || data.claimerId !== message.author.id) return;
 					const files = this.client.utils.getAttachments(message.attachments);
 					try {
 						user.send(
@@ -95,7 +95,7 @@ export default class messageEvent extends Listener {
 							}\n\`\`\`❓ | Add \`${
 								this.client.commandHandler.prefix
 							}\` to block the bot from sending a reply.`,
-							{ files }
+							{ files, allowedMentions: { users: [] } }
 						);
 					} catch (e) {
 						return message.channel
@@ -121,7 +121,7 @@ export default class messageEvent extends Listener {
 		let data: iTicket =
 			filter.find((t) => t.userId === message.author.id) ||
 			(await Ticket.findOne({ userId: message.author.id }));
-		if (!data) return;
+		if (data) return;
 
 		if (await blacklist.findOne({ userId: message.author.id }))
 			return message.author
@@ -141,7 +141,7 @@ export default class messageEvent extends Listener {
 				">>> 👋 | Hello! What is the reason behind your ticket today? Please provide as much detail as possible so that we can help you as best as we can!"
 			);
 		} catch (e) {
-			message.channel.send(
+			return message.channel.send(
 				">>> ❗ | Sorry, it looks like your DMs are closed. Please open them, otherwise I am unable to open a ticket for you."
 			);
 		}
@@ -158,18 +158,31 @@ export default class messageEvent extends Listener {
 		const channel = await this.client.utils.getChannel(claimChannel);
 		if (!channel) return dm.send("No channel found, please contact the developer of this bot.");
 
-		const claimMsg = await channel.send(
-			new MessageEmbed()
-				.setTitle(`New ticket - ${message.author.tag}`)
-				.setDescription(m.content.substr(0, 2048))
-				.setFooter("React with ✔ to claim this ticket.")
-		);
+		const claimMsg = await channel
+			.send(
+				new MessageEmbed()
+					.setTitle(`New ticket - ${message.author.tag}`)
+					.setDescription(m.content.substr(0, 2048))
+					.setFooter("React with ✔ to claim this ticket.")
+					.setColor(this.client.hex)
+			)
+			.catch((e) =>
+				dm.send("I am unable to send messages or add embed links in the ticket claim channel.")
+			);
+
+		claimMsg
+			.react("✔")
+			.catch((e) =>
+				this.client.log(
+					"⚠ | Unable to add `Message Reactions` to messages in the ticket claim channel."
+				)
+			);
 
 		await Ticket.create({
 			messageId: claimMsg.id,
-			channelId: "",
+			channelId: "channelId",
 			userId: message.author.id,
-			claimerId: "",
+			claimerId: "claimerId",
 			status: "unclaimed",
 		});
 

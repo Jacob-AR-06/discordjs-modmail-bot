@@ -1,0 +1,17 @@
+{
+	"owners": ["owner_ids_here"],
+	"error_logging": true,
+	"claimChannel": "claim_channel_id",
+	"category": "category_id_here",
+	"roleId": "helper_role_here",
+	"transcript": {
+		"enabled": false,
+		"channel": "channel_id_here"
+	},
+	"client": {
+		"activity": "with your tickets!",
+		"type": "PLAYING",
+		"status": "online",
+		"hex": "#4B5E6A"
+	}
+}

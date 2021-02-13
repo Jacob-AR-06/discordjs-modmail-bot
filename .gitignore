@@ -8,3 +8,4 @@ yarn-error.log
 
 # files
 .env
+src/config.json
