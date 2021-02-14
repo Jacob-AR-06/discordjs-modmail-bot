@@ -15,6 +15,10 @@ export default class transferCommand extends Command {
 				{
 					id: "userId",
 					type: "string",
+					prompt: {
+						start: "To who do you want to transfer this ticket?",
+						retry: "To who do you want to transfer this ticket?",
+					},
 				},
 			],
 		});
@@ -27,6 +31,8 @@ export default class transferCommand extends Command {
 		const config = await Ticket.findOne({ channelId: message.channel.id });
 		const user = await this.client.utils.fetchUser(userId);
 
+		if (!user) return message.util.send(`>>> 🔎 | I was unable to find a user called "${userId}"!`);
+
 		if (
 			!config ||
 			(config.claimerId !== message.author.id &&
@@ -34,7 +40,6 @@ export default class transferCommand extends Command {
 		)
 			return;
 
-		if (!user) return message.util.send(`>>> 🔎 | I was unable to find a user called "${userId}"!`);
 		// if (user.presence.status === "offline")
 		// 	return message.util.send(
 		// 		`>>> ❗ | This user is **ofline**, you can only transfer to users who are online.`
