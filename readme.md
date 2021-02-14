@@ -86,6 +86,20 @@ In order to run the bot you need to have [NodeJS](https://nodejs.org/en/), I rec
 
 The bot has the basic commands such as exec, eval, ping, help but also a close, contact, transcript, blacklist command. When running the close command with transcripts turned on, the bot will display a type status, during this period it is transcripting the channel. This may take a while depending on your pc hardware. Once finished it will delete the channel and save the transcript to a channel.
 
+List of commands:
+
+- Close
+- Transcript
+- Contact
+- Blacklist
+- whitelist
+- Ping
+- Help
+- Stats
+- Eval
+- Exec
+- Reload
+
 ## Author
 
 👤 **DaanGamesDG**
