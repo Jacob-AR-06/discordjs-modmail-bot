@@ -2,7 +2,7 @@
 	"name": "modmail-bot",
 	"version": "2.0.0",
 	"main": "dist/src/bot.js",
-	"license": "MIT",
+	"license": "Apache-2.0",
 	"dependencies": {
 		"@types/mongoose": "^5.10.3",
 		"@types/ms": "^0.7.31",
@@ -18,9 +18,14 @@
 	},
 	"scripts": {
 		"dev": "nodemon --exec ts-node src/bot.ts",
-		"run": "tsc && node dist/bot.js"
+		"start": "tsc && node dist/src/bot.js",
+		"build": "tsc --build"
 	},
 	"repository": {
 		"url": "https://github.com/DaanGamesDG/modmail-bot"
+	},
+	"author": {
+		"name": "DaanGamesDG",
+		"url": "https://daangamesdg.wtf/"
 	}
 }
