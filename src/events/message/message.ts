@@ -55,9 +55,7 @@ export default class messageEvent extends Listener {
 						);
 					} catch (e) {
 						return message.author
-							.send(
-								`>>> ⚠ | I am unable to send messages to this channel, if you have the \`Manage Server\` permissions run \`${this.client.commandHandler.prefix}delete <channel id>\` to delete the ticket.`
-							)
+							.send(`>>> ⚠ | I am unable to send messages to this channel.`)
 							.catch(async (e) => {
 								await Ticket.findOneAndDelete({ userId: message.author.id });
 								filter.delete(data.channelId);
@@ -99,9 +97,7 @@ export default class messageEvent extends Listener {
 						);
 					} catch (e) {
 						return message.channel
-							.send(
-								`>>> ⚠ | I am unable to send messages to this channel, if you have the \`Manage Server\` permissions run \`${this.client.commandHandler.prefix}delete <channel id>\` to delete the ticket.`
-							)
+							.send(`>>> ⚠ | I am unable to send messages to this user.`)
 							.catch(async (e) => {
 								await Ticket.findOneAndDelete({ userId: message.author.id });
 								filter.delete(data.channelId);
