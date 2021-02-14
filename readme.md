@@ -57,7 +57,7 @@ Do the same for the `config.json.example` file, rename it to `config.json.exampl
 
 Let me show you what is what exactly:
 
-```json
+```js
 {
 	"owners": ["owner_ids_here"], // ids of the users that a have access to owner only commands
 	"error_logging": true, // whether or not to enable webhook logging
