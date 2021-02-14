@@ -39,7 +39,7 @@ export default class transcriptCommand extends Command {
 				"transcripts"
 			)} -b`,
 			{
-				cwd: join(process.cwd(), "transcriptor"),
+				cwd: join(process.cwd(), "chatExporter"),
 			},
 			async (e, stdout) => {
 				message.channel.stopTyping();

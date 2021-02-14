@@ -78,7 +78,7 @@ Let me show you what is what exactly:
 ```
 
 If you remove one of the items / give them the wrong value, the bot might crash.
-When transcripts are enabled you should have `.net runtime` installed on your pc, you must have a folder inside the main bot folder called "transcriptor" with the [discordChatExporter](https://github.com/Tyrrrz/DiscordChatExporter) program inside it, otherwise it won't work. For more information about it please check [this](https://github.com/Tyrrrz/DiscordChatExporter/wiki). I am **not** responsable for any issues regarding the transcriptor part.
+When transcripts are enabled you should have `.net runtime` installed on your pc, you must have a folder inside the main bot folder called "chatExporter" with the [discordChatExporter](https://github.com/Tyrrrz/DiscordChatExporter) program inside it, otherwise it won't work. For more information about it please check [this](https://github.com/Tyrrrz/DiscordChatExporter/wiki). I am **not** responsable for any issues regarding the transcriptor part.
 
 In order to run the bot you need to have [NodeJS](https://nodejs.org/en/), I recommend using the 14.x version. To run the bot open your terminal, go to the correct directory and type `yarn run start / npm run start`, this will make a build and start the bot. After that, your done! Bot should be running without problems, yay 🎉.
 

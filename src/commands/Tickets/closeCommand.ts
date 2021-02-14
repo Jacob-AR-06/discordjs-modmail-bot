@@ -51,7 +51,7 @@ export default class closeCommand extends Command {
 					"transcripts"
 				)} -b`,
 				{
-					cwd: join(process.cwd(), "transcriptor"),
+					cwd: join(process.cwd(), "chatExporter"),
 				},
 				async (e, stdout) => {
 					if (e) return this.client.log(`⚠ | Transcript error: \`${e}\``);
