@@ -89,7 +89,7 @@ The bot has the basic commands such as exec, eval, ping, help but also a close, 
 List of commands:
 
 - Close
-- Transcript
+- Transcript (requires [discordChatExporter](https://github.com/Tyrrrz/DiscordChatExporter))
 - Contact
 - Blacklist
 - whitelist
@@ -101,6 +101,7 @@ List of commands:
 - Reload
 
 Users with `Manage Channel` permissions bypass the ticket claimer id check, this means they can force close / force transfer a ticket!
+The database is only used to save ticket data and blacklists, once a ticket is deleted the data in the database will as well. You can get **512mb** for free, that's enough for a this bot.
 
 ## Author
 
