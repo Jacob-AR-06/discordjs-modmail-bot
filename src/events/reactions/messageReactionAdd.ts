@@ -72,10 +72,11 @@ export default class messageReactionAdd extends Listener {
 			await ticket.save();
 
 			const embed = message.embeds[0];
+			const ticketOwner = await this.client.utils.fetchUser(ticket.userId);
 			channel
 				.send(
 					new MessageEmbed()
-						.setTitle(`ticket - ${message.author.tag}`)
+						.setTitle(`ticket - ${ticketOwner.tag}`)
 						.setDescription(embed.description)
 						.setFooter(`Claimed by ${user.tag}`)
 						.setColor(this.client.hex)

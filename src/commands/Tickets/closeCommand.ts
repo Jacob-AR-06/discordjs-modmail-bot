@@ -5,6 +5,7 @@ import { transcript } from "../../config.json";
 import { join } from "path";
 import { exec } from "child_process";
 import { unlink } from "fs/promises";
+import { MessageEmbed } from "discord.js";
 
 export default class closeCommand extends Command {
 	public constructor() {
@@ -24,6 +25,13 @@ export default class closeCommand extends Command {
 
 		const config = await Ticket.findOne({ channelId: message.channel.id });
 		if (!config) return;
+
+		if (
+			!config ||
+			(config.claimerId !== message.author.id &&
+				!message.member.hasPermission("MANAGE_CHANNELS", { checkAdmin: true, checkOwner: true }))
+		)
+			return;
 
 		if (transcript.enabled) {
 			message.channel.startTyping();
@@ -58,7 +66,23 @@ export default class closeCommand extends Command {
 							} - ${(message.channel as TextChannel).name} [${message.channel.id}].html`
 						);
 
-						channel.send(new MessageAttachment(dir));
+						const user = await this.client.utils.fetchUser(config.userId);
+
+						await channel
+							.send(
+								new MessageEmbed()
+									.setTitle(`transcript - ${user.tag}`)
+									.setDescription(`Ticket claimer: <@${config.claimerId}>`)
+									.setColor(this.client.hex)
+							)
+							.catch((e) => null);
+						channel
+							.send(new MessageAttachment(dir, `${message.channel.id}-ticket.html`))
+							.catch((e) => null);
+
+						await user
+							.send(">>> 📪 | Your ticket has been closed, thanks for getting in touch.")
+							.catch((e) => null);
 
 						config.status = "closed";
 						await config.save();
