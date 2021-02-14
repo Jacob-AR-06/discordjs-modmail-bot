@@ -26,6 +26,8 @@ export default class closeCommand extends Command {
 		const config = await Ticket.findOne({ channelId: message.channel.id });
 		if (!config) return;
 
+		const user = await this.client.utils.fetchUser(config.userId);
+
 		if (
 			!config ||
 			(config.claimerId !== message.author.id &&
@@ -33,84 +35,74 @@ export default class closeCommand extends Command {
 		)
 			return;
 
-		if (transcript.enabled) {
+		const channel = await this.client.utils.getChannel(transcript.channel);
+		if (transcript.enabled && channel) {
 			message.channel.startTyping();
-			const channel = await this.client.utils.getChannel(transcript.channel);
-			if (channel) {
-				exec(
-					`${
-						process.platform === "win32"
-							? "DiscordChatExporter.Cli.exe"
-							: "dotnet DiscordChatExporter.Cli.dll"
-					} export -c ${message.channel.id} -t ${this.client.token} -o ${join(
+			exec(
+				`${
+					process.platform === "win32"
+						? "DiscordChatExporter.Cli.exe"
+						: "dotnet DiscordChatExporter.Cli.dll"
+				} export -c ${message.channel.id} -t ${this.client.token} -o ${join(
+					__dirname,
+					"..",
+					"..",
+					"..",
+					"transcripts"
+				)} -b`,
+				{
+					cwd: join(process.cwd(), "transcriptor"),
+				},
+				async (e, stdout) => {
+					if (e) return this.client.log(`⚠ | Transcript error: \`${e}\``);
+
+					const dir = join(
 						__dirname,
 						"..",
 						"..",
 						"..",
-						"transcripts"
-					)} -b`,
-					{
-						cwd: join(process.cwd(), "transcriptor"),
-					},
-					async (e, stdout) => {
-						if (e) return this.client.log(`⚠ | Transcript error: \`${e}\``);
+						"transcripts",
+						`${message.guild.name} - ${(message.channel as TextChannel).parent?.name || "text"} - ${
+							(message.channel as TextChannel).name
+						} [${message.channel.id}].html`
+					);
 
-						const dir = join(
-							__dirname,
-							"..",
-							"..",
-							"..",
-							"transcripts",
-							`${message.guild.name} - ${
-								(message.channel as TextChannel).parent?.name || "text"
-							} - ${(message.channel as TextChannel).name} [${message.channel.id}].html`
-						);
+					await channel
+						.send(
+							new MessageEmbed()
+								.setTitle(`transcript - ${user.tag}`)
+								.setDescription(`Ticket claimer: <@${config.claimerId}>`)
+								.setColor(this.client.hex)
+						)
+						.catch((e) => null);
+					channel
+						.send(new MessageAttachment(dir, `${message.channel.id}-ticket.html`))
+						.catch((e) => null);
 
-						const user = await this.client.utils.fetchUser(config.userId);
+					await user
+						.send(">>> 📪 | Your ticket has been closed, thanks for getting in touch.")
+						.catch((e) => null);
 
-						await channel
-							.send(
-								new MessageEmbed()
-									.setTitle(`transcript - ${user.tag}`)
-									.setDescription(`Ticket claimer: <@${config.claimerId}>`)
-									.setColor(this.client.hex)
-							)
-							.catch((e) => null);
-						channel
-							.send(new MessageAttachment(dir, `${message.channel.id}-ticket.html`))
-							.catch((e) => null);
+					config.status = "closed";
+					await config.save();
+					message.channel.stopTyping();
 
-						await user
-							.send(">>> 📪 | Your ticket has been closed, thanks for getting in touch.")
-							.catch((e) => null);
-
-						config.status = "closed";
-						await config.save();
-						message.channel.stopTyping();
-
-						setTimeout(() => {
-							config.delete();
-							message.channel.delete("deleted by user");
-							unlink(dir);
-						}, 5e3);
-						message.channel.send(">>> 🗑 | Deleting this ticket in **5 seconds**!");
-					}
-				);
-			} else {
-				config.status = "closed";
-				await config.save();
-				message.channel.stopTyping();
-
-				setTimeout(() => {
-					config.delete();
-					message.channel.delete("deleted by user");
-				}, 5e3);
-				message.channel.send(">>> 🗑 | Deleting this ticket in **5 seconds**!");
-			}
+					setTimeout(() => {
+						config.delete();
+						message.channel.delete("deleted by user");
+						unlink(dir);
+					}, 5e3);
+					message.channel.send(">>> 🗑 | Deleting this ticket in **5 seconds**!");
+				}
+			);
 		} else {
 			config.status = "closed";
 			await config.save();
 			message.channel.stopTyping();
+
+			await user
+				.send(">>> 📪 | Your ticket has been closed, thanks for getting in touch.")
+				.catch((e) => null);
 
 			setTimeout(() => {
 				config.delete();
